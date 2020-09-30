@@ -10,6 +10,10 @@ const DEFULT_ITEM_CADASTRADO = {
 
 describe('Suite de manipulação de heroi', ()=>{
 
+    before(async ()=>{
+        await database.cadastrar(DEFULT_ITEM_CADASTRADO);
+    });
+
     it('Deve pesquisaar um heroi, utilizando arquivos', async ()=>{
         const expected = DEFULT_ITEM_CADASTRADO;
         const [resultado] = await database.listar(expected.id)
@@ -22,6 +26,12 @@ describe('Suite de manipulação de heroi', ()=>{
         const resposta = await database.cadastrar(DEFULT_ITEM_CADASTRADO);
         const [actual] = await database.listar(DEFULT_ITEM_CADASTRADO.id);
         deepEqual(actual,expected)
+    })
+
+    it('Deve remover um heroi do arquivo', async ()=>{
+        const expected = true; 
+        const resultado = await database.remover(DEFULT_ITEM_CADASTRADO.id);
+        deepEqual(resultado, expected)
     })
 
 })
