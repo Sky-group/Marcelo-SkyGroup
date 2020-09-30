@@ -52,7 +52,7 @@ class Database{
 
         const dados = await this.obterDadosArquivo();
         const indice = dados.findIndex(item => item.id === parseInt(id));
-        
+
         if(indice === -1){
            throw Error('O arquivo não existe');
         }
@@ -60,6 +60,27 @@ class Database{
         dados.splice(indice, 1);
         return await this.escreverArquivo(dados)
        
+   }
+
+   async atualizar(id, modificacoes){
+       const dados = await this.obterDadosArquivo();
+       const indice = dados.findIndex(item => item.id === parseInt(id))
+       if(indice === -1){
+           throw Error('O heroi informado não existe');
+       }
+       const atual = dados[indice];
+       const objetoAtualizar = {
+           ...atual,
+           ...modificacoes
+       }
+       dados.splice(indice, 1)
+
+       return await this.escreverArquivo([
+           ...dados,
+           objetoAtualizar
+       ])
+
+
    }
 }
 
