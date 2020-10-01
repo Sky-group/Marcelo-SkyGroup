@@ -6,7 +6,7 @@ const writeFileAsync = promisify(writeFile);
 
 class Database{
    constructor(){
-       this.NOME_ARQUIVO = 'herois.js';
+       this.NOME_ARQUIVO = 'herois.json';
    }
 
    async obterDadosArquivo(){
@@ -21,11 +21,11 @@ class Database{
 
    async cadastrar(heroi){
        const dados = await this.obterDadosArquivo();
-       const id = heroi.id <= 2 ?  Date.now(): heroi.id;
+       const id = heroi.id <= 2 ?  heroi.id : Date.now()
 
        const heroiComId = {
-           id,
-           ...heroi
+           ...heroi,
+                id
        };
        
        const dadosFinal = [
