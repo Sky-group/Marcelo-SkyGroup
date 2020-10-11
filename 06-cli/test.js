@@ -5,7 +5,7 @@ const database = require('./database');
 const DEFULT_ITEM_CADASTRADO = {
     nome:  'Flash',
     poder: 'Speed',
-    id: 1
+    id: 1601595513869
 }
 
 const DEFULT_ITEM_ATUALIZAR = {
@@ -15,11 +15,11 @@ const DEFULT_ITEM_ATUALIZAR = {
 }
 describe('Suite de manipulação de heroi', ()=>{
 
-    before(async ()=>{
+ /*   before(async ()=>{
         await database.cadastrar(DEFULT_ITEM_CADASTRADO);
         await database.cadastrar(DEFULT_ITEM_ATUALIZAR);
     });
-
+*/
     it('Deve pesquisaar um heroi, utilizando arquivos', async ()=>{
         const expected = DEFULT_ITEM_CADASTRADO;
         const [resultado] = await database.listar(expected.id)
@@ -34,7 +34,7 @@ describe('Suite de manipulação de heroi', ()=>{
         deepEqual(actual,expected)
     })
 
-    it('Deve remover um heroi do arquivo', async ()=>{
+    it.only('Deve remover um heroi do arquivo', async ()=>{
         const expected = true; 
         const resultado = await database.remover(DEFULT_ITEM_CADASTRADO.id);
         deepEqual(resultado, expected)

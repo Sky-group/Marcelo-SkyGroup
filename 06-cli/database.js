@@ -45,7 +45,7 @@ class Database{
    }
 
    async remover(id){
-
+        
         if(!id){
            return await this.escreverArquivo([]);
         }
