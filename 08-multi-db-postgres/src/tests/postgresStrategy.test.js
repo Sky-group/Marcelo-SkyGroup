@@ -26,4 +26,10 @@ describe('Postgres Strategy', function(){
         assert.deepEqual(result, MOCHA_HEROI_CADASTRAR);
     })
 
+    it('Teste Listar', async function(){
+        const [result] = await context.read(MOCHA_HEROI_CADASTRAR.nome);
+        delete result.id;
+        assert.deepEqual(result, MOCHA_HEROI_CADASTRAR);
+    })
+
 })

@@ -60,6 +60,11 @@ class Postrgres extends ICrud{
         const {dataValues} = await this._herois.create(item);
         return dataValues;
     }
+
+    async read(item = {}){
+       return this._herois.findAll({where:{nome:item}, raw:true});
+       
+    }
 }
 
 module.exports = Postrgres;
