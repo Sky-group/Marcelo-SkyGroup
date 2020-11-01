@@ -18,6 +18,7 @@ describe('Postgres Strategy', function(){
     this.timeout(Infinity);
     this.beforeAll(async function(){
       await context.connect();
+      await context.delete();
       await context.create(MOCHA_HEROI_ATUALIZAR);
     })
 
@@ -73,6 +74,12 @@ describe('Postgres Strategy', function(){
          }
           
          */
+    })
+
+    it('Teste Deletar', async function(){
+        const [item] = await context.read({})
+        const result = await context.delete(item.id);
+        assert.deepStrictEqual(result,1);
     })
 
 })
