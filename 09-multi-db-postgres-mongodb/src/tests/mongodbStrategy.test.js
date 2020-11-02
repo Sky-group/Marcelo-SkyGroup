@@ -48,11 +48,16 @@ describe('MongoDb suite de teste',function(){
         assert.deepStrictEqual(result, MOCHA_HEROI_CADASTRAR);
     })
 
-    it.only('Teste Atualizar', async () =>{
+    it('Teste Atualizar', async () =>{
         const result = await context.update(ID_HEROI_ATUALIZAR, {
             name: 'Pernalonga'
         })
 
         assert.deepStrictEqual(result.nModified, 1);
+    })
+
+    it( 'Testando Delete', async () =>{
+        const result = await context.delete(ID_HEROI_ATUALIZAR);
+        assert.deepStrictEqual(result.n,1);
     })
 })
