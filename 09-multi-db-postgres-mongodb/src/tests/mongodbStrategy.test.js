@@ -27,4 +27,14 @@ describe('MongoDb suite de teste',function(){
         const { name, poder} = await context.create(MOCHA_HEROI_CADASTRAR);
         assert.deepStrictEqual({name, poder}, MOCHA_HEROI_CADASTRAR);
     })
+
+    it.only('Testando o listar', async () =>{
+        const[{name,poder}] = await context.read({name:MOCHA_HEROI_CADASTRAR.name});
+        const result = {
+            name,
+            poder
+        }
+
+        assert.deepStrictEqual(result, MOCHA_HEROI_CADASTRAR);
+    })
 })

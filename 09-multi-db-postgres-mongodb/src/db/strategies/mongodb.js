@@ -68,6 +68,10 @@ class MongoDB extends ICrud {
 
         }
 
+     read(item){
+         return this._herois.find(item)
+     }
+
 }
 
 module.exports = MongoDB;   
