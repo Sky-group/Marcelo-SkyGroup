@@ -11,9 +11,19 @@ const MOCHA_HEROI_CADASTRAR = {
     poder: 'Falar com animais marinhos'
 };
 
+const MOCHA_HEROI_ATUALIZAR = {
+    name: 'Perninha',
+    poder: 'Cenoura'
+};
+
+let ID_HEROI_ATUALIZAR = '';
+
 describe('MongoDb suite de teste',function(){
     this.beforeAll(async () => {
-        await context.connected()
+        await context.connected();
+        const resultado = await context.create(MOCHA_HEROI_ATUALIZAR);
+        ID_HEROI_ATUALIZAR = resultado._id;
+
     })
 
     it('Testando conexão', async () => {
@@ -28,7 +38,7 @@ describe('MongoDb suite de teste',function(){
         assert.deepStrictEqual({name, poder}, MOCHA_HEROI_CADASTRAR);
     })
 
-    it.only('Testando o listar', async () =>{
+    it('Testando o listar', async () =>{
         const[{name,poder}] = await context.read({name:MOCHA_HEROI_CADASTRAR.name});
         const result = {
             name,
@@ -36,5 +46,13 @@ describe('MongoDb suite de teste',function(){
         }
 
         assert.deepStrictEqual(result, MOCHA_HEROI_CADASTRAR);
+    })
+
+    it.only('Teste Atualizar', async () =>{
+        const result = await context.update(ID_HEROI_ATUALIZAR, {
+            name: 'Pernalonga'
+        })
+
+        assert.deepStrictEqual(result.nModified, 1);
     })
 })

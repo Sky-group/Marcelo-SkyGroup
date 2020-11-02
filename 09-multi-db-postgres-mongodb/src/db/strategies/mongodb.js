@@ -58,7 +58,7 @@ class MongoDB extends ICrud {
             }
         });
 
-        this._herois = Mongoose.model('herois', heroiSchema)
+        this._herois = Mongoose.model('heroes', heroiSchema)
     }
 
      create(item) {
@@ -70,6 +70,10 @@ class MongoDB extends ICrud {
 
      read(item){
          return this._herois.find(item)
+     }
+
+     update(id, item){
+         return this._herois.updateOne({_id:id},{$set:item});
      }
 
 }
