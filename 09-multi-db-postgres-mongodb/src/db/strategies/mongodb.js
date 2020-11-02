@@ -38,11 +38,12 @@ class MongoDB extends ICrud {
         const connetion = Mongoose.connection;
         this._driver = connetion;
         connetion.once('open', () => console.log('database rodando !'));
+        this.defineModel();
 
     }
 
     defineModel() {
-        heroiSchema  = Mongoose.Schema({
+       const heroiSchema  = Mongoose.Schema({
             name: {
                 type: String,
                 required: true
@@ -60,15 +61,12 @@ class MongoDB extends ICrud {
         this._herois = Mongoose.model('herois', heroiSchema)
     }
 
-    async create(item) {
-        const resultadoCadastrar = await modelo.create({
-            name: 'Homem-aranha',
-            poder: 'pode de aranha'
-        });
+     create(item) {
+        
+       return  this._herois.create(item);
+       
 
-        console.log('resultadoCadastrar', resultadoCadastrar);
-
-    }
+        }
 
 }
 
