@@ -23,6 +23,10 @@ class ICrud{
         throw new NotEmplementedException();
     }
 
+    connected(){
+        throw new NotEmplementedException();
+    }
+
 }
 
 module.exports = ICrud;

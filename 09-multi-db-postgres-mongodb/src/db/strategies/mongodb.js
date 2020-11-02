@@ -1,12 +1,73 @@
-const  ICrud = require('./interfaces/interfaceCrud');
+const ICrud = require('./interfaces/interfaceCrud');
+const Mongoose = require('mongoose');
 
-class MongoDB extends ICrud{
-    constructor(){
+const STATUS = {
+    0: 'Disconectado',
+    1: 'Conectado',
+    2: 'Conectando',
+    3: 'Disconectando'
+}
+
+class MongoDB extends ICrud {
+    constructor() {
         super();
+        this._herois = null;
+        this._driver = null;
+    }
+    async isConnected() {
+        const state = STATUS[this._driver.readyState];
+
+        if(state === 'Conetado') return state;
+
+        if(state !== 'Conectando') return state
+
+        await new Promise(resolve => setTimeout(resolve,1000));
+        return STATUS[this._driver.readyState];
+
     }
 
-    create(item){
-        console.log("O item foi salvo em MongoDB");
+    connected() {
+
+        Mongoose.connect('mongodb://marcelocardoso:minhasenhasecreta@localhost:27017/heroes',
+            { useNewParser: true }, function (error) {
+                if (!error) return;
+
+                console.log('Falha na conexão', error)
+            });
+
+        const connetion = Mongoose.connection;
+        this._driver = connetion;
+        connetion.once('open', () => console.log('database rodando !'));
+
+    }
+
+    defineModel() {
+        heroiSchema  = Mongoose.Schema({
+            name: {
+                type: String,
+                required: true
+            },
+            poder: {
+                type: String,
+                required: true
+            },
+            insertedAt: {
+                type: Date,
+                default: new Date()
+            }
+        });
+
+        this._herois = Mongoose.model('herois', heroiSchema)
+    }
+
+    async create(item) {
+        const resultadoCadastrar = await modelo.create({
+            name: 'Homem-aranha',
+            poder: 'pode de aranha'
+        });
+
+        console.log('resultadoCadastrar', resultadoCadastrar);
+
     }
 
 }

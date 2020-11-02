@@ -41,7 +41,7 @@ class Postrgres extends ICrud{
             console.error('fail', error)
         }
     }
-    async connect(){
+    async connected(){
        this._driver = new Sequelize(
             'heroes',
             'marcelocardoso',

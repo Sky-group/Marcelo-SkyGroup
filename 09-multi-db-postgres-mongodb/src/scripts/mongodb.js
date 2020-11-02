@@ -6,13 +6,13 @@ const { DatabaseError } = require("sequelize/types")
 //docker exec -it 5a5cf67ccf29 mongo -u marcelocardoso -p minhasenhasecreta --authenticationDatabase heroes
 
 //databases
-show dbs
+//show dbs;
 
 //muda o contexto para uma database
-use heroes
+//use heroes;
 
 // mostra tabelas (coleções)
-show collections
+//show collections;
 
 
 db.heroes.insert({
