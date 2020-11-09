@@ -1,8 +1,8 @@
 const assert = require('assert');
 const MongoDb = require('./../db/strategies/mongodb');
 const Context = require('./../db/strategies/base/contextStrategy');
-const { deepStrictEqual } = require('assert');
-const { moveCursor } = require('readline');
+//const { deepStrictEqual } = require('assert');
+//const { moveCursor } = require('readline');
 
 const context = new Context(new MongoDb);
 
@@ -29,7 +29,7 @@ describe('MongoDb suite de teste',function(){
     it('Testando conexão', async () => {
         const result = await context.isConnected();
         const expected = 'Conectado';
-        deepStrictEqual(result, expected);
+        assert.deepStrictEqual(result, expected);
     })
 
     it('Testando a criação de herois', async ()=>{
@@ -57,6 +57,7 @@ describe('MongoDb suite de teste',function(){
     })
 
     it( 'Testando Delete', async () =>{
+       
         const result = await context.delete(ID_HEROI_ATUALIZAR);
         assert.deepStrictEqual(result.n,1);
     })
