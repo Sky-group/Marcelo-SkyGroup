@@ -15,7 +15,7 @@ const MOCHA_HEROI_ATUALIZAR ={
 };
 
 
-describe.only('Postgres Strategy', function(){
+describe('Postgres Strategy', function(){
     this.timeout(Infinity);
     this.beforeAll(async () =>{
       const connection = await Postgres.connected();
