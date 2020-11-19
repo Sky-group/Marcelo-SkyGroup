@@ -3,7 +3,7 @@ const api = require('./../api');
 
 let ap = {};
 
-describe.only('Suite de teste API Herois', function (){
+describe('Suite de teste API Herois', function (){
     this.beforeAll(async () =>{
         app = await api;
     })
