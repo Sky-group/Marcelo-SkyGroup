@@ -30,20 +30,7 @@ class HeroRoutes extends BaseRoute {
                 try {
                     
                     const {skip, limit, name} = request.query
-                    /*
-                    let query = {}
                     
-                    if(name){
-                        query.name = name;
-                    }
-                    
-                    if(isNaN(skip)){
-                        throw Error ('O tipo do skip é incorreto')
-                    }
-                    if(isNaN(limit)){
-                        throw Error (' O tipo do limit é incorreto')
-                    }
-                    */
                    const query = {
                        name :{
                            $regex: `.*${name}*.`
