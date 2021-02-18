@@ -18,7 +18,7 @@ class Postrgres extends ICrud{
 
         return model;
     }
-    async isConnected(){
+     async isConnected(){
         try {
             await this._connection.authenticate();
             return true;
@@ -54,9 +54,10 @@ class Postrgres extends ICrud{
        
     }
 
-    async update(id, item){
-       
-        return this._schema.update(item,{where:{id: id}});
+    async update(id, item, upsert = false){
+       const  fn = upsert?  'upsert' : 'update'
+       return this._schema[fn](item,{where:{id}})
+      
     }
 
     async delete(id){
