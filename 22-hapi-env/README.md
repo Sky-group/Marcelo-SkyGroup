@@ -14,6 +14,8 @@ Agora iremos adicionar o repositório do docker ao nosso sistema:
 
 sudo add-apt-repository "deb https://download.docker.com/linux/ubuntu bionic stable"
 
+Teste
+
 Em seguida iremos atualizar a lista de pacotes:
 
  sudo apt-get update
